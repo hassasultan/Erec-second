@@ -8,6 +8,7 @@ use App\Traits\SaveImage;
 use Exception;
 use Illuminate\Support\Str;
 
+
 class UserController extends Controller
 {
     use SaveImage;
@@ -41,7 +42,7 @@ class UserController extends Controller
             $user = User::create($data);
             if($user)
             {
-                return response()->json(['message'=>"User has been created successfully.."]);
+                return response()->json(['user'=> $user]);
             }
             else
             {
