@@ -42,7 +42,7 @@ class UserController extends Controller
             $user = User::create($data);
             if($user)
             {
-                return response()->json(['user'=> $user]);
+                return  $user;
             }
             else
             {
