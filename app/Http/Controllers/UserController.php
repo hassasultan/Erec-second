@@ -63,6 +63,15 @@ class UserController extends Controller
         // dd($request->all());
         try
         {
+            $check = LoggedIn::where('u_id',$request->u_id)->where('u_type',$request->u_type);
+            if($check->count() > 0)
+            {
+                $check = $check->get();
+                foreach($check as $row)
+                {
+                    $row->delete();
+                }
+            }
             $logged = new LoggedIn();
             $logged->u_id = $request->u_id;
             $logged->u_type = $request->u_type;
