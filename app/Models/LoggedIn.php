@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LoggedIn extends Model
 {
     use HasFactory;
-    protected $table = "users";
+    protected $table = "logged_in";
     public $timestamps = false;
     protected $fillable = [
         "u_id",
