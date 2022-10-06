@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\LoggedIn;
 use App\Traits\SaveImage;
 use Exception;
 use Illuminate\Support\Str;
@@ -53,6 +54,24 @@ class UserController extends Controller
         catch(Exception $ex)
         {
             // dd($ex->getMessage());
+            return response()->json(['error'=>$ex->getMessage()]);
+        }
+
+    }
+    public function loggedInCreate(Request $request)
+    {
+        try
+        {
+            $logged = new LoggedIn();
+            $logged->u_id = $request->u_id;
+            $logged->u_type = $request->u_type;
+            $logged->session_id = $request->sessionid;
+            $logged->log_time = $request->time;
+            $logged->save();
+            return true;
+        }
+        catch(Exception $ex)
+        {
             return response()->json(['error'=>$ex->getMessage()]);
         }
 
