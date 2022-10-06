@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::Post('create/user',[UserController::class,'create']);
 Route::Post('create/logged_in',[UserController::class,'loggedInCreate']);
+Route::Post('destroy/logged_in',[UserController::class,'loggedInDelete']);
