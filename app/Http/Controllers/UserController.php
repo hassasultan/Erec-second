@@ -75,7 +75,7 @@ class UserController extends Controller
             $logged = new LoggedIn();
             $logged->u_id = $request->u_id;
             $logged->u_type = $request->u_type;
-            $logged->session_id = $request->sessionid;
+            $logged->session_id = $request->session_id;
             $logged->log_time = $request->log_time;
             $logged->save();
             return true;
