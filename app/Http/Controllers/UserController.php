@@ -69,7 +69,7 @@ class UserController extends Controller
                 $check = $check->get();
                 foreach($check as $row)
                 {
-                    $row->delete();
+                    LoggedIn::where('u_id',$row->u_id)->where('u_type',$row->u_type)->delete();
                 }
             }
             $logged = new LoggedIn();
