@@ -60,7 +60,7 @@ class UserController extends Controller
     }
     public function loggedInCreate(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         try
         {
             $logged = new LoggedIn();
