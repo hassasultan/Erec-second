@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::Post('create/user',[UserController::class,'create']);
 Route::Post('create/logged_in',[UserController::class,'loggedInCreate']);
 Route::Post('destroy/logged_in',[UserController::class,'loggedInDelete']);
+Route::get('classes/list',[ClassController::class,'index']);
