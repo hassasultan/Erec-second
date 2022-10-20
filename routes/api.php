@@ -23,3 +23,4 @@ Route::Post('create/user',[UserController::class,'create']);
 Route::Post('create/logged_in',[UserController::class,'loggedInCreate']);
 Route::Post('destroy/logged_in',[UserController::class,'loggedInDelete']);
 Route::get('classes/list',[ClassController::class,'index']);
+Route::Post('user/classes/create',[ClassController::class,'createUserClass']);
