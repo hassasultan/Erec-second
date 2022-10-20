@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Classes;
 use App\Models\UserClasses;
+use App\Models\NewUserClasses;
 use Exception;
 
 class ClassController extends Controller
@@ -24,6 +25,12 @@ class ClassController extends Controller
             $UserClass->class_id = $request->class_id;
             $UserClass->org_id = 32;
             $UserClass->save();
+
+            $newUserClass = new NewUserClasses;
+            $newUserClass->u_id = $request->u_id;
+            $newUserClass->class_id = $request->class_id;
+            $newUserClass->org_id = 32;
+            $newUserClass->save();
 
             return true;
         }
