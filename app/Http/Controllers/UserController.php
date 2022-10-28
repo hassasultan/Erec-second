@@ -154,42 +154,45 @@ class UserController extends Controller
                     $toClasses->save();
 
                 }
-
-                $posted = new PostedQst();
-                $posted->qst = $request->qst_no;
-                $posted->attempts = 10;
-                $posted->start = "1000-01-01";
-                $posted->end = "1000-01-01";
-                $posted->class_id = $request->class_id;
-                $posted->result = 0;
-                $posted->submissions = 0;
-                $posted->rhm = 0;
-                $posted->forall = 0;
-                $posted->u_id = 82;
-                $posted->posted = 1;
-                $posted->org_id = 32;
-                $posted->avail = 1;
-                $posted->start_month = 1;
-                $posted->start_day = 1;
-                $posted->start_hour = 1245;
-                $posted->finish_month = 1;
-                $posted->finish_day = 1;
-                $posted->finish_hour = 1245;
-                $posted->qtime = 60;
-                $posted->delivery = 1;
-                $posted->branching = 0;
-                $posted->shuffle = 0;
-                $posted->display = 0;
-                $posted->save();
+                $checkThree = PostedQst::where('qst',$request->qst_no)->where('class_id',$request->class_id)->count();
+                if($checkThree == 0)
+                {
+                    $posted = new PostedQst();
+                    $posted->qst = $request->qst_no;
+                    $posted->attempts = 10;
+                    $posted->start = "1000-01-01";
+                    $posted->end = "1000-01-01";
+                    $posted->class_id = $request->class_id;
+                    $posted->result = 0;
+                    $posted->submissions = 0;
+                    $posted->rhm = 0;
+                    $posted->forall = 0;
+                    $posted->u_id = 82;
+                    $posted->posted = 1;
+                    $posted->org_id = 32;
+                    $posted->avail = 1;
+                    $posted->start_month = 1;
+                    $posted->start_day = 1;
+                    $posted->start_hour = 1245;
+                    $posted->finish_month = 1;
+                    $posted->finish_day = 1;
+                    $posted->finish_hour = 1245;
+                    $posted->qtime = 60;
+                    $posted->delivery = 1;
+                    $posted->branching = 0;
+                    $posted->shuffle = 0;
+                    $posted->display = 0;
+                    $posted->save();
+                }
                 DB::commit();
-                if($assign && $attempt && $toClasses)
-                {
+                // if($assign && $attempt && $toClasses)
+                // {
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
+                // }
+                // else
+                // {
+                //     return false;
+                // }
             }
             else
             {
