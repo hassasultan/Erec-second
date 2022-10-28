@@ -50,4 +50,9 @@ class ClassController extends Controller
         })->get();
         return $qsts;
     }
+    public function qst(Request $request)
+    {
+        $qsts = Qst::with('qstToClassNew')->where('number',$request->id)->first();
+        return $qsts;
+    }
 }
