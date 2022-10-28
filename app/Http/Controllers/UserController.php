@@ -141,12 +141,19 @@ class UserController extends Controller
                 $attempt->end = 0;
                 $attempt->resume = 0;
                 $attempt->save();
-                $toClasses = new QstToClasses();
-                $toClasses->qst = $request->qst_no;
-                $toClasses->class_id = $request->class_id;
-                $toClasses->type = 1;
-                $toClasses->org_id = 32;
-                $toClasses->save();
+                $checkTwo = QstToClasses::where('qst',$request->qst_no)->where('class_id',$request->class_id)
+                ->where('type',1)
+                ->where('org_id',32)->count();
+                if($checkTwo == 0)
+                {
+                    $toClasses = new QstToClasses();
+                    $toClasses->qst = $request->qst_no;
+                    $toClasses->class_id = $request->class_id;
+                    $toClasses->type = 1;
+                    $toClasses->org_id = 32;
+                    $toClasses->save();
+
+                }
 
                 $posted = new PostedQst();
                 $posted->qst = $request->qst_no;
