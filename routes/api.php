@@ -25,3 +25,4 @@ Route::Post('destroy/logged_in',[UserController::class,'loggedInDelete']);
 Route::get('classes/list',[ClassController::class,'index']);
 Route::Post('user/classes/create',[ClassController::class,'createUserClass']);
 Route::post('user/assign/test',[UserController::class,'assignCandidate']);
+Route::get('qst/to/classes',[ClassController::class,'qstClasses']);

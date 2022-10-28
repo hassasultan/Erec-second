@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\UserClasses;
 use App\Models\NewUserClasses;
 use App\Models\QstToClasses;
+use App\Models\Qst;
 use Exception;
 
 class ClassController extends Controller
@@ -42,7 +43,11 @@ class ClassController extends Controller
     }
     public function qstClasses(Request $request)
     {
-        $qsts = QstToClasses::where('class_id',$request->class_id)->get();
+        $class_id = $request->class_id;
+        $qsts = Qst::with('qstToClassNew')->whereHas('qstToClassNew',function($query) use($class_id)
+        {
+            $query->where('class_id',$class_id);
+        })->get();
         return $qsts;
     }
 }

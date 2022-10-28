@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\QstToClasses;
+
 
 class Qst extends Model
 {
@@ -23,4 +25,8 @@ class Qst extends Model
         "org_id",
         "branching",
     ];
+    public function qstToClassNew()
+    {
+        return $this->hasMany(QstToClasses::class,'qst','number');
+    }
 }
