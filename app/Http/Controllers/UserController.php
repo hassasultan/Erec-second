@@ -158,8 +158,8 @@ class UserController extends Controller
                 $posted = new PostedQst();
                 $posted->qst = $request->qst_no;
                 $posted->attempts = 10;
-                $posted->start = 1000-01-01;
-                $posted->end = 1000-01-01;
+                $posted->start = "1000-01-01";
+                $posted->end = "1000-01-01";
                 $posted->class_id = $request->class_id;
                 $posted->result = 0;
                 $posted->submissions = 0;
