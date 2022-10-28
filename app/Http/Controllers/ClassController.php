@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Classes;
 use App\Models\UserClasses;
 use App\Models\NewUserClasses;
+use App\Models\QstToClasses;
 use Exception;
 
 class ClassController extends Controller
@@ -38,5 +39,10 @@ class ClassController extends Controller
         {
             return $ex->getMessage();
         }
+    }
+    public function qstClasses(Request $request)
+    {
+        $qsts = QstToClasses::where('class_id',$request->class_id)->get();
+        return $qsts;
     }
 }
