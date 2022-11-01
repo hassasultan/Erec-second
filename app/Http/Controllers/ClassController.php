@@ -18,6 +18,12 @@ class ClassController extends Controller
         $classes = Classes::all();
         return $classes;
     }
+    public function SpecificClass(Request $request)
+    {
+        # code...
+        $class = Classes::where('class_id',$request->class_id)->first();
+        return $class;
+    }
     public function createUserClass(Request $request)
     {
         try
@@ -50,6 +56,7 @@ class ClassController extends Controller
         })->get();
         return $qsts;
     }
+
     public function qst(Request $request)
     {
         $qsts = Qst::with('qstToClassNew')->where('number',$request->id)->first();

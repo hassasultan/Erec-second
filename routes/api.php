@@ -27,3 +27,5 @@ Route::Post('user/classes/create',[ClassController::class,'createUserClass']);
 Route::post('user/assign/test',[UserController::class,'assignCandidate']);
 Route::get('qst/to/classes',[ClassController::class,'qstClasses']);
 Route::get('single/qst',[ClassController::class,'qst']);
+Route::get('single/class',[ClassController::class,'SpecificClass']);
+Route::get('logged/user',[UserController::class,'loggedInDetails']);

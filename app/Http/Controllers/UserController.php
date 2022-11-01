@@ -64,6 +64,11 @@ class UserController extends Controller
         }
 
     }
+    public function loggedInDetails(Request $request)
+    {
+        $logged = LoggedIn::where('u_id',$request->u_id)->first();
+        return $logged;
+    }
     public function loggedInCreate(Request $request)
     {
         // dd($request->all());
