@@ -8,6 +8,7 @@ use App\Models\UserClasses;
 use App\Models\NewUserClasses;
 use App\Models\QstToClasses;
 use App\Models\Qst;
+use App\Models\QstScore;
 use Exception;
 
 class ClassController extends Controller
@@ -61,5 +62,10 @@ class ClassController extends Controller
     {
         $qsts = Qst::with('qstToClassNew')->where('number',$request->id)->first();
         return $qsts;
+    }
+    public function qstSocre(Request $request)
+    {
+        $score = QstScore::with('qst')->where('qst',$request->qst)->where('u_id',$request->user_id)->first();
+        return $score;
     }
 }
