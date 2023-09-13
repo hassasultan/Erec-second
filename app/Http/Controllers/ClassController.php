@@ -52,10 +52,11 @@ class ClassController extends Controller
         try
         {
             $valid = $this->validate($request, [
-                'class_id'  =>  'required|numeric',
+                'class_id'  =>  'required|numeric|exists:classes,class_id',
             ]);
             $slug  = Str::slug($request->name);
             $class = Classes::where('class_id',$request->class_id)->first();
+            dd($class->toArray());
             if($request->has('name'))
             {
                 $class->class_name = $request->name;
