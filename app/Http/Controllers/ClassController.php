@@ -24,27 +24,31 @@ class ClassController extends Controller
     public function SpecificClass(Request $request)
     {
         # code...
-        $class = Classes::where('class_id',$request->class_id)->first();
+        $class = Classes::where('class_id', $request->class_id)->first();
         return $class;
     }
     public function create_Class(Request $request)
     {
         # code...
-        $valid = $this->validate($request, [
-            'name'   		        =>  'required|string|string|unique:classes,class_name',
-        ]);
-		$slug  = Str::slug($request->name);
-        $class = new Classes;
-        $class->class_name = $request->name;
-        $class->org_id = 32;
-        $class->institution_id = $slug;
-        $class->save();
-        return $class;
+        try
+        {
+            $valid = $this->validate($request, [
+                'name'  =>  'required|string|unique:classes,class_name',
+            ]);
+            $slug  = Str::slug($request->name);
+            $class = new Classes;
+            $class->class_name = $request->name;
+            $class->org_id = 32;
+            $class->institution_id = $slug;
+            $class->save();
+            return $class;
+        } catch (Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()]);
+        }
     }
     public function createUserClass(Request $request)
     {
-        try
-        {
+        try {
             $UserClass = new UserClasses;
             $UserClass->u_id = $request->u_id;
             $UserClass->class_id = $request->class_id;
@@ -58,30 +62,27 @@ class ClassController extends Controller
             $newUserClass->save();
 
             return true;
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             return $ex->getMessage();
         }
     }
     public function qstClasses(Request $request)
     {
         $class_id = $request->class_id;
-        $qsts = Qst::with('qstToClassNew')->whereHas('qstToClassNew',function($query) use($class_id)
-        {
-            $query->where('class_id',$class_id);
+        $qsts = Qst::with('qstToClassNew')->whereHas('qstToClassNew', function ($query) use ($class_id) {
+            $query->where('class_id', $class_id);
         })->get();
         return $qsts;
     }
 
     public function qst(Request $request)
     {
-        $qsts = Qst::with('qstToClassNew')->where('number',$request->id)->first();
+        $qsts = Qst::with('qstToClassNew')->where('number', $request->id)->first();
         return $qsts;
     }
     public function qstSocre(Request $request)
     {
-        $score = QstScore::with('qst')->where('qst',$request->qst)->where('u_id',$request->user_id)->first();
+        $score = QstScore::with('qst')->where('qst', $request->qst)->where('u_id', $request->user_id)->first();
         return $score;
     }
 }
