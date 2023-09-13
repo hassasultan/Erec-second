@@ -56,13 +56,13 @@ class ClassController extends Controller
             ]);
             $slug  = Str::slug($request->name);
             $class = Classes::where('class_id',$request->class_id)->first();
-            dd($class->toArray());
+            $data = [];
             if($request->has('name'))
             {
-                $class->class_name = $request->name;
-                $class->institution_id = $slug;
+                $data['class_name'] = $request->name;
+                $data['institution_id'] = $slug;
             }
-            $class->save();
+            Classes::where('class_id',$request->class_id)->update($data);
             return $class;
         } catch (Exception $ex) {
             return response()->json(['error' => $ex->getMessage()]);
