@@ -55,7 +55,6 @@ class ClassController extends Controller
                 'class_id'  =>  'required|numeric|exists:classes,class_id',
             ]);
             $slug  = Str::slug($request->name);
-            $class = Classes::where('class_id',$request->class_id)->first();
             $data = [];
             if($request->has('name'))
             {
@@ -63,6 +62,7 @@ class ClassController extends Controller
                 $data['institution_id'] = $slug;
             }
             Classes::where('class_id',$request->class_id)->update($data);
+            $class = Classes::where('class_id',$request->class_id)->first();
             return $class;
         } catch (Exception $ex) {
             return response()->json(['error' => $ex->getMessage()]);
