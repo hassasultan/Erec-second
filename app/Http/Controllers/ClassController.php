@@ -52,7 +52,7 @@ class ClassController extends Controller
         try
         {
             $valid = $this->validate($request, [
-                'class_id'  =>  'required|string|exists:classes,class_id',
+                'class_id'  =>  'required|numeric',
             ]);
             $slug  = Str::slug($request->name);
             $class = Classes::where('class_id',$request->class_id)->first();
