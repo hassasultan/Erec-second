@@ -46,6 +46,27 @@ class ClassController extends Controller
             return response()->json(['error' => $ex->getMessage()]);
         }
     }
+    public function update_Class(Request $request)
+    {
+        # code...
+        try
+        {
+            $valid = $this->validate($request, [
+                'id'  =>  'required|string|exists:classes,class_id',
+            ]);
+            $slug  = Str::slug($request->name);
+            $class = Classes::where('class_id',$request->id)->first();
+            if($request->has('name'))
+            {
+                $class->class_name = $request->name;
+                $class->institution_id = $slug;
+            }
+            $class->save();
+            return $class;
+        } catch (Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()]);
+        }
+    }
     public function createUserClass(Request $request)
     {
         try {
