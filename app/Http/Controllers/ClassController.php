@@ -10,6 +10,8 @@ use App\Models\QstToClasses;
 use App\Models\Qst;
 use App\Models\QstScore;
 use Exception;
+use Illuminate\Support\Str;
+
 
 class ClassController extends Controller
 {
@@ -23,6 +25,20 @@ class ClassController extends Controller
     {
         # code...
         $class = Classes::where('class_id',$request->class_id)->first();
+        return $class;
+    }
+    public function create_Class(Request $request)
+    {
+        # code...
+        $valid = $this->validate($request, [
+            'name'   		        =>  'required|string|string|unique:classes,class_name',
+        ]);
+		$slug  = Str::slug($request->name);
+        $class = new Classes;
+        $class->class_name = $request->name;
+        $class->org_id = 32;
+        $class->institution_id = $slug;
+        $class->save();
         return $class;
     }
     public function createUserClass(Request $request)

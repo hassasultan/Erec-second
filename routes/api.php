@@ -23,6 +23,7 @@ Route::Post('create/user',[UserController::class,'create']);
 Route::Post('create/logged_in',[UserController::class,'loggedInCreate']);
 Route::Post('destroy/logged_in',[UserController::class,'loggedInDelete']);
 Route::get('classes/list',[ClassController::class,'index']);
+Route::Post('classes/create',[ClassController::class,'create_Class']);
 Route::Post('user/classes/create',[ClassController::class,'createUserClass']);
 Route::post('user/assign/test',[UserController::class,'assignCandidate']);
 Route::get('qst/to/classes',[ClassController::class,'qstClasses']);

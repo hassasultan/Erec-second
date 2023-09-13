@@ -13,7 +13,6 @@ class Classes extends Model
     protected $fillable = [
         "class_name",
         "org_id",
-        "session_id",
         "institution_id",
     ];
 }
